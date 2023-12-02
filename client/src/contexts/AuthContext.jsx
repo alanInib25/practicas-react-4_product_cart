@@ -5,6 +5,7 @@ import {
   useContext,
   useReducer,
 } from "react";
+
 //api
 import {
   authRegister,
@@ -40,7 +41,7 @@ const initialState = {
 
 export function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(authReducer, initialState);
-
+  console.log("auth contdxt")
   useEffect(() => {
     checkLogin();
   }, []);

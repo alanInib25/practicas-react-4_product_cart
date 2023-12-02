@@ -4,10 +4,11 @@ import { H3, P, Img, FlexBox, I } from "../styles/generalComponents";
 import { Picture, Article } from "../styles/componentsStyled/cart";
 
 //context
-import { useCart } from "../contexts/Cart";
+import { useCart } from "../contexts/CartContext";
 
 function CartItem({ item }) {
   const { incrementItemCart, decrementItemCart } = useCart();
+  console.log("cartItem")
   return (
     <Article className="cart-items-container">
       <Picture>

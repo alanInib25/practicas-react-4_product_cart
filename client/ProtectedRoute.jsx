@@ -1,7 +1,7 @@
 import { Outlet, Navigate } from "react-router-dom"
 
 //contexto
-import { useAuth } from "./src/contexts/Auth";
+import { useAuth } from "./src/contexts/AuthContext.jsx";
 
 function ProtectedRoute() {
   const { isAuthenticate } = useAuth();

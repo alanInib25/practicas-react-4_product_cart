@@ -5,6 +5,10 @@ import {
   useReducer,
   useEffect,
 } from "react";
+
+//contexto
+import { usefilters } from "./FiltersContext.jsx";
+
 //data
 import { getProducts } from "../api/productRequest";
 
@@ -26,21 +30,25 @@ import { productReducer } from "../reducers/productReducer";
 const initialState = {
   products: [],
   productDetail: null,
+  categorys: [],
+  brands: [],
 };
 
 export function ProductsProvider({ children }) {
   const [state, dispatch] = useReducer(productReducer, initialState);
-  const [filters, setFilters] = useState({
-    minPrice: 0,
-    category: "All",
-    brand: "All",
-  });
+  const { filterProducts } = usefilters();
+  console.log("products context")
 
   useEffect(() => {
     getAllProducts();
   }, []);
 
-  //tra todos los productos
+  useEffect(() => {
+    categorysProducts();
+    brandsProducs();
+  }, [state.products]);
+
+  //trae todos los productos
   const getAllProducts = async () => {
     try {
       const products = await getProducts();
@@ -51,17 +59,6 @@ export function ProductsProvider({ children }) {
     }
   };
 
-  //filtrar productos
-  const filterProducts = (products) => {
-    return products.filter((product) => {
-      return (
-        product.price >= filters.minPrice &&
-        (filters.category === "All" || product.category === filters.category) &&
-        (filters.brand === "All" || product.brand === filters.brand)
-      );
-    });
-  };
-
   //producto para detalle
   const productforDetail = (id) => {
     const index = state.products.findIndex((product) => product._id === id);
@@ -70,11 +67,25 @@ export function ProductsProvider({ children }) {
     return;
   };
 
+  //trae un producto (para el cartContext))
   const getProduct = (id) => {
     const index = state.products.findIndex((prod) => prod._id === id);
     return state.products[index];
   };
 
+  //categorias de productos para filtro
+  const categorysProducts = () => {
+    dispatch({ type: "SET_CATEGORY_FILTER" });
+    return;
+  };
+
+  //marcas de productos para filtro
+  const brandsProducs = () => {
+    dispatch({ type: "SET_BRAND_FILTER" });
+    return;
+  };
+
+  //productos filtrados
   const productsFiltered = filterProducts(state.products);
 
   return (
@@ -84,8 +95,6 @@ export function ProductsProvider({ children }) {
         getProduct,
         productforDetail,
         productsFiltered,
-        filters,
-        setFilters,
       }}
     >
       {children}

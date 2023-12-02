@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { useProducts } from "../contexts/Products";
+
+//context
+import { useProducts } from "../contexts/ProductsContext.jsx";
+import { usefilters } from "../contexts/FiltersContext.jsx";
 
 //styled components
 import {
@@ -12,21 +15,17 @@ import {
 import { Article } from "../styles/componentsStyled/filters.js";
 
 function Filter() {
-  const { products, setFilters } = useProducts();
-  const [categorys, setCategorys] = useState([]);
-  const [brands, setBrands] = useState([]);
-  const [range, setRange] = useState(0);
-
-  useEffect(() => {
-    categoryProducts();
-    brandProducs();
-  }, [products]);
-
+  const { categorys, brands } = useProducts();
+  const { setFilters } = usefilters();
+  const [range, setRange] = useState(0); 
+  console.log("filter")
+  //filtro por rango
   const handleChangeRange = (event) => {
     setRange(event.target.value);
     setFilters((prev) => ({ ...prev, minPrice: event.target.value }));
   };
 
+  //filtro por category
   const handleChangeCategory = (event) => {
     setFilters((prev) => ({
       ...prev,
@@ -34,32 +33,12 @@ function Filter() {
     }));
   };
 
+  //filtro por brand
   const handleChangeBrand = (event) => {
     setFilters((prev) => ({
       ...prev,
       brand: event.target.value,
     }));
-  };
-
-  //categorias
-  const categoryProducts = () => {
-    if (products.length) {
-      const categories = [
-        "All",
-        ...new Set(products.map((prod) => prod.category)),
-      ];
-      setCategorys((prev) => [...prev, ...categories]);
-    }
-    return;
-  };
-
-  //marcas
-  const brandProducs = () => {
-    if (products.length) {
-      const brands = ["All", ...new Set(products.map((prod) => prod.brand))];
-      setBrands((prev) => [...prev, ...brands]);
-    }
-    return;
   };
 
   return (

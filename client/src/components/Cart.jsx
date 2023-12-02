@@ -4,7 +4,7 @@ import { FaRegTrashCan } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
 
 //context
-import { useCart } from "../contexts/Cart";
+import { useCart } from "../contexts/CartContext";
 
 //components
 import CartItem from "./CartItem";
@@ -38,11 +38,11 @@ function Cart() {
     handleCloseCart();
     navigate("/check-sale");
   }
-
+  console.log("cart")
   return (
     <Section
       className={`${
-        (showCart && expandCart && "open-cart expand-cart") ||
+        ((showCart && expandCart) && "open-cart expand-cart") ||
         (showCart ? "open-cart" : "close-cart")
       }`}
     >

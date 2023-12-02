@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 //contexto
-import { useAuth } from "../contexts/Auth";
+import { useAuth } from "../contexts/AuthContext";
 import { Article, Section, P, FlexBox, LoginButton, RegisterButton } from "../styles/generalComponents";
 
 function CheckSale() {
   const { isAuthenticate } = useAuth();
   const navigate = useNavigate();
-  console.log(isAuthenticate);
+
 
   useEffect(() => {
     if(isAuthenticate) navigate("/end-sale")

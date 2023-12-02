@@ -3,7 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 //context
-import { useCart } from "../contexts/Cart.jsx";
+import { useCart } from "../contexts/CartContext.jsx";
 
 //styles componentes
 import {
@@ -24,7 +24,7 @@ import {
 function Product({ product }) {
   const { addToCart } = useCart();
   const navigate = useNavigate();
-
+  console.log("product")
   return (
     <Li>
       <Article>

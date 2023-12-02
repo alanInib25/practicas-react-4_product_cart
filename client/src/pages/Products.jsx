@@ -1,5 +1,5 @@
 //context
-import { useProducts } from "../contexts/Products.jsx";
+import { useProducts } from "../contexts/ProductsContext.jsx";
 
 //component
 import Product from "../components/Product";
@@ -9,7 +9,7 @@ import { Section, Ul, H1 } from "../styles/generalComponents.js";
 
 function Products() {
   const { productsFiltered } = useProducts();
-
+  console.log("products")
   return (
     <Section>
       {!productsFiltered.length ? (

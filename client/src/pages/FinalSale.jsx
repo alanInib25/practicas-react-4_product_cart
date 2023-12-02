@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { Section, H1 } from "../styles/generalComponents";
 
 //contexto
-import { useCart } from "../contexts/Cart";
+import { useCart } from "../contexts/CartContext";
 
 function FinalSale() {
   const { setCart } = useCart();
-
+  console.log("final_sale")
   useEffect(() => {
     setCart([]);
   }, []);

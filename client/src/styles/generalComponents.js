@@ -39,8 +39,8 @@ export const Label = styled.label`
 `;
 
 export const Span = styled.span`
-  width: 5rem;
-  font-size: 1rem;
+  width: 10rem;
+  font-size: 2rem;
   color: ${({ theme }) => theme.colors.third};
   text-align: center;
 `;
@@ -115,7 +115,7 @@ export const Ul = styled.ul`
   gap: 1rem;
 
   &.active-oneProduct {
-    grid-template-columns: repeat(3, 36rem);
+    grid-template-columns: 36rem;
   }
 `;
 

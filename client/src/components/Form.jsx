@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../contexts/Auth.jsx";
 import { useForm } from "react-hook-form";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 
+//context
+import { useAuth } from "../contexts/AuthContext.jsx";
+
+//styles components
 import {
   RegisterButton,
   H1,
@@ -18,12 +21,13 @@ import {
   I,
   LoginButton
 } from "../styles/generalComponents.js";
+
 import { FlexBox, UlError } from "../styles/componentsStyled/register.js";
 
 function Register() {
   const [page, setPage] = useState();
   const { pathname } = useLocation();
-
+  console.log("form")
   //uso de react-hook-form
   const {
     register,

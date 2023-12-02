@@ -3,8 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
 
 //context
-import { useCart } from "../contexts/Cart.jsx";
-import { useProducts } from "../contexts/Products.jsx";
+import { useCart } from "../contexts/CartContext.jsx";
+import { useProducts } from "../contexts/ProductsContext.jsx";
 
 //swiper components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -42,6 +42,7 @@ function ProductDetail() {
   const { productforDetail, productDetail, products } = useProducts();
   const { id } = useParams();
   const navigate = useNavigate();
+  console.log("product_detaul")
 
   useEffect(() => {
     productforDetail(id);

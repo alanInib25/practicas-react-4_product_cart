@@ -2,10 +2,11 @@ import {
   createContext,
   useContext,
   useReducer,
-  useState,
   useEffect,
 } from "react";
-import { useProducts } from "../contexts/Products";
+
+//context
+import { useProducts } from "./ProductsContext";
 
 //funcion reductora
 import { cartReducer } from "../reducers/cartReducer";
@@ -30,7 +31,7 @@ const initialState = {
 
 export function CartProvider({ children }) {
   const [state, dispatch] = useReducer(cartReducer, initialState);
-
+  console.log("cart context")
   const { getProduct } = useProducts();
 
   useEffect(() => {

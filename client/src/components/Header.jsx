@@ -1,5 +1,4 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { useCart } from "../contexts/Cart";
 import { Link } from "react-router-dom";
 import { FaShoppingBag } from "react-icons/fa";
 import { TiShoppingCart } from "react-icons/ti";
@@ -9,7 +8,9 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 import Filter from "./Filter";
 
 //contexto
-import { useAuth } from "../contexts/Auth.jsx";
+import { useCart } from "../contexts/CartContext.jsx";
+import { useAuth } from "../contexts/AuthContext.jsx";
+
 
 //styled components
 import {
@@ -23,16 +24,18 @@ import {
 import { ContainerHeader } from "../styles/componentsStyled/header.js";
 
 function Header() {
-  //context
   const { isAuthenticate, user, logoutUser } = useAuth();
   const { cart, displayCart } = useCart();
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
+
   const handleLogout = () => {
     logoutUser()
     navigate("/")
   }
+console.log("header afuera")
+
 
   return (
     <ContainerHeader>
